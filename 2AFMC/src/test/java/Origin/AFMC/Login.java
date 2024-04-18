@@ -41,6 +41,14 @@ public class Login extends Base {
 	    launchbrowser(u + s1);
 	    maxiwindow();
 	    
+	    
+	    WebElement  a = driver.findElement(By.xpath("//h1[@class='prod-heading']"));
+	    String text = a.getText();
+	    System.out.println(text);
+	    String a2 ="UID : "+s1;
+	    System.out.println(a2);
+	   Assert.assertTrue(a2.contains(text),"code match");
+	    
 	    // Now the driver object should be initialized and usable
 	    WebElement productElement = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")); 
 	    String actualProduct = productElement.getText();

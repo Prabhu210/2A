@@ -1,4 +1,5 @@
 package Origin.AFMC;
+
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,7 +16,7 @@ public class Exceldatasupplier {
     
     @DataProvider(name = "logindata")
     public Object[][] getdata() throws IOException, ParseException {
-        File excelfile = new File("C:\\Users\\Acviss\\eclipse-workspace\\2AFMC\\Excel\\17-04-2024 2A data (2).xlsx");
+        File excelfile = new File("C:\\Users\\Acviss\\git\\repository8\\2AFMC\\Excel\\18-04-2024.xlsx");
         FileInputStream fis = new FileInputStream(excelfile);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
         XSSFSheet sheet = workbook.getSheet("Sheet1"); // Assuming the sheet name is "Sheet1"
@@ -38,18 +39,20 @@ public class Exceldatasupplier {
     }
 
     private String formatDate(String dateString) throws ParseException {
+        if (dateString.isEmpty()) {
+            // Handle empty string case here
+            return null; // or return a default value
+        }
+
         // Define the input and output date formats
         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssXXX");
         DateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-        
+
         // Parse the input date string
         Date date = inputFormat.parse(dateString.trim());
-        
+
         // Format the parsed date to the desired format
         return outputFormat.format(date);
     }
-
-   // With this change, it should parse the date string corre
-
 
 }
